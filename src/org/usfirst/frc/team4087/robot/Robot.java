@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4087.robot;
 
+import org.usfirst.frc.team4087.robot.subsystems.Drivebase;
+
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -20,7 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends TimedRobot {
-	public static OI m_oi;
+	public static OI oi;
+	public static Drivebase drivebase;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -28,8 +31,8 @@ public class Robot extends TimedRobot {
 	
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
-		SmartDashboard.putData("Auto mode", m_chooser);
+		oi = new OI();
+		drivebase = new Drivebase();
 	}
 
 	
@@ -46,12 +49,7 @@ public class Robot extends TimedRobot {
 	
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
-
-		
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-		}
+	
 	}
 
 	
@@ -62,10 +60,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
-		}
+
 	}
 
 	

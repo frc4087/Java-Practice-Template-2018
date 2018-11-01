@@ -2,6 +2,8 @@ package org.usfirst.frc.team4087.robot.subsystems;
 
 import org.usfirst.frc.team4087.robot.Robot;
 import org.usfirst.frc.team4087.robot.RobotMap;
+import org.usfirst.frc.team4087.robot.commands.CheesyDrive;
+import org.usfirst.frc.team4087.robot.commands.DriveDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -42,6 +44,7 @@ public class Drivebase extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		
+		setDefaultCommand(new DriveDrive());
 		
 	}
 
