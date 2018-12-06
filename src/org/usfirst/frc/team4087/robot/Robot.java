@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4087.robot;
 
 import org.usfirst.frc.team4087.robot.subsystems.Drivebase;
+import org.usfirst.frc.team4087.robot.subsystems.Wrist;
 
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -18,24 +19,21 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 public class Robot extends TimedRobot {
 	public static OI oi;
 	public static Drivebase drivebase;
+	public static Wrist wrist;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	
 	@Override
 	public void robotInit() {
 		oi = new OI();
 		drivebase = new Drivebase();
 	}
 
-	
 	@Override
 	public void disabledInit() {
 
@@ -46,13 +44,11 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 	}
 
-	
 	@Override
 	public void autonomousInit() {
-	
+
 	}
 
-	
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
@@ -63,20 +59,17 @@ public class Robot extends TimedRobot {
 
 	}
 
-	
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	
 	@Override
 	public void testPeriodic() {
 	}
 
-
 	public static void initTalon(TalonSRX motor) {
-		
+
 		motor.setNeutralMode(NeutralMode.Brake);
 		motor.neutralOutput();
 		motor.setSensorPhase(false);
@@ -84,7 +77,7 @@ public class Robot extends TimedRobot {
 		motor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		motor.configNominalOutputForward(0.0, 0);
 		motor.configNominalOutputReverse(0.0, 0);
-		
+
 	}
 
 }
